@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Enums;
+using Runtime.Signals;
 using UnityEngine;
 
 namespace Runtime.Controllers.UI
@@ -15,6 +16,19 @@ namespace Runtime.Controllers.UI
         #endregion
 
         #endregion
+        
+        
+        private void OnEnable()
+        {
+            SubscribeEvents();
+        }
+        
+        private void SubscribeEvents()
+        {
+            CoreUISignals.Instance.onClosePanel += OnClosePanel;
+            CoreUISignals.Instance.onOpenPanel += OnOpenPanel;
+            CoreUISignals.Instance.onCloseAllPanels += OnCloseAllPanels;
+        }
         
         private void OnCloseAllPanels()
         {
@@ -37,6 +51,17 @@ namespace Runtime.Controllers.UI
             if (layers[value].childCount <= 0) return;
             
             Destroy(layers[value].GetChild(0).gameObject);
+        }
+        private void UnSubscribeEvents()
+        {
+            CoreUISignals.Instance.onClosePanel -= OnClosePanel;
+            CoreUISignals.Instance.onOpenPanel -= OnOpenPanel;
+            CoreUISignals.Instance.onCloseAllPanels -= OnCloseAllPanels;
+        }
+
+        private void OnDisable()
+        {
+            UnSubscribeEvents();
         }
         
         

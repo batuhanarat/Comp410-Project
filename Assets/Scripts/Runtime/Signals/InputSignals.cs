@@ -27,5 +27,6 @@ namespace Runtime.Signals
         public UnityAction onFirstTimeTouchTaken = delegate { };
         public UnityAction onInputTaken = delegate { };
         public UnityAction onInputReleased = delegate { };
+        
     }
 }

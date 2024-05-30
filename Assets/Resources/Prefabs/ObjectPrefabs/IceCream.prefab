@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4396906179095118319}
   m_Layer: 0
   m_Name: IceCream
-  m_TagString: Untagged
+  m_TagString: IceCream
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
