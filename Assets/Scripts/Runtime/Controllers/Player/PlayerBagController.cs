@@ -17,7 +17,7 @@ namespace Runtime.Controllers.UI
 
         #region Private Variables
 
-        private List<ObjectType> _bagArray;
+        private List<ObjectType> _bagArray = new List<ObjectType>();
         private Dictionary< ObjectType, int > _bagHashMap= new Dictionary<ObjectType, int>();
         private int _currentIndex;
         private const int MAX_BAG_CAPACITY = 7;   
@@ -80,7 +80,9 @@ namespace Runtime.Controllers.UI
             }
             _bagHashMap[objectEnum]++;
             _bagArray.Insert(_currentIndex,objectEnum); 
+
             //Populate in bag ui
+            UISignals.Instance.onAddToBag?.Invoke(_currentIndex, objectEnum);
             Debug.Log($"Populating in bag ui");
 
             _currentIndex++;
@@ -108,6 +110,8 @@ namespace Runtime.Controllers.UI
 
             _currentIndex = _bagArray.Count;
             _bagHashMap[objectEnum] = 0;
+            UISignals.Instance.onBlast?.Invoke(_bagArray);
+
             Debug.Log($"Updating after blasting");
         }
 

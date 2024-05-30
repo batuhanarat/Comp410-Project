@@ -5,6 +5,7 @@ using Runtime.Enums;
 using UnityEngine;
 using UnityEngine.Events;
 
+namespace Runtime.Signals{
 public class BagSignals : MonoBehaviour
 {
     #region Singleton
@@ -29,4 +30,5 @@ public class BagSignals : MonoBehaviour
 
 
   
+}
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Runtime.Enums;
 
 namespace Runtime.Signals
 {
@@ -23,5 +24,10 @@ namespace Runtime.Signals
         #endregion
         
         public UnityAction onPlay = delegate { };
+        public UnityAction<int, ObjectType> onAddToBag = delegate { };
+        public UnityAction<List<ObjectType>> onBlast = delegate { };
+
+
+
     }
 }

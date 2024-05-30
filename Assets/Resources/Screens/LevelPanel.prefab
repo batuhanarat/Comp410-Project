@@ -186,6 +186,7 @@ RectTransform:
   - {fileID: 2959938322163311957}
   - {fileID: 5529571171292993755}
   - {fileID: 6558663250414025898}
+  - {fileID: 8888416929450230164}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -843,6 +844,66 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3575781885729070543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8888416929450230164}
+  - component: {fileID: 5798356079800194259}
+  m_Layer: 5
+  m_Name: "Bagu\u0131"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8888416929450230164
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3575781885729070543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2476889676769771970}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5798356079800194259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3575781885729070543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91491f199b53049008931215d79afca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bagObjectSpawnPoints:
+  - {fileID: 8111650295036564440}
+  - {fileID: 1881536091673061917}
+  - {fileID: 59094894216182459}
+  - {fileID: 352353413615898654}
+  - {fileID: 2403635787833810431}
+  - {fileID: 5044477899256484733}
+  - {fileID: 2609696495029408327}
+  - {fileID: 8888416929450230164}
+  cakePrefab: {fileID: 6365739559345292764, guid: 4bb2718dcf1f44bcea9bed1e302956a0,
+    type: 3}
 --- !u!1 &3587571692357722586
 GameObject:
   m_ObjectHideFlags: 0
