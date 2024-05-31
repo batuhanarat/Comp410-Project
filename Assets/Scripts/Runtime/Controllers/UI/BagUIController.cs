@@ -12,7 +12,6 @@ namespace Runtime.Controllers.UI
 
         [SerializeField] private List<RectTransform> bagObjectSpawnPoints = new List<RectTransform>();
 
-        [SerializeField] private GameObject cakePrefab;
         #endregion
         
         private void OnEnable() {
@@ -24,31 +23,38 @@ namespace Runtime.Controllers.UI
         {
 
             UISignals.Instance.onAddToBag += OnAddToBag;
+            UISignals.Instance.onBlast += OnBlast;
             
         }
           private void OnAddToBag(int index, ObjectType objectEnum) {
 
             RectTransform transform = bagObjectSpawnPoints[index];
 
-            Object.Instantiate(cakePrefab, transform.position,transform.rotation, transform);        
+            Object.Instantiate(Resources.Load<GameObject>($"Prefabs/UIPrefabs/BagObjectPrefabs/{objectEnum}"), transform,
+                false);
         }
 
         // reference
         private void OnBlast(List<ObjectType> bagArray) {
+                    Debug.Log("first" +bagArray.Count);
 
             // delete all object ui
             foreach (var objectSpawnPoint in bagObjectSpawnPoints) {
 
-                if (objectSpawnPoint.transform.childCount <= 0) return;
-                Object.Destroy(objectSpawnPoint.transform.GetChild(0).gameObject);
+                if (objectSpawnPoint.childCount <= 1) break;
+                
+                Object.Destroy(objectSpawnPoint.GetChild(1).gameObject);
             }
+          
+            Debug.Log("second" + bagArray.Count);
 
             // add all current object ui
             for (int i = 0; i < bagArray.Count; i++) {
 
                 RectTransform transform = bagObjectSpawnPoints[i];
-
-                Object.Instantiate(cakePrefab, transform.position,transform.rotation, transform); 
+                ObjectType objectEnum = bagArray[i];
+                Object.Instantiate(Resources.Load<GameObject>($"Prefabs/UIPrefabs/BagObjectPrefabs/{objectEnum}"), transform,
+                    false);
             }
         } 
 

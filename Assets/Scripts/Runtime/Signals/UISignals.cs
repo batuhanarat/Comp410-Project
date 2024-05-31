@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Runtime.Enums;
+using System.Collections.Generic;
 
 namespace Runtime.Signals
 {
