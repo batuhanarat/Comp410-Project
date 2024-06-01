@@ -75,7 +75,7 @@ namespace Runtime.Controllers.UI
         {
             CheckBag();
             if (!_bagHashMap.ContainsKey(objectEnum))
-            {
+             {
                 _bagHashMap[objectEnum] = 0;
             }
             _bagHashMap[objectEnum]++;
@@ -92,7 +92,9 @@ namespace Runtime.Controllers.UI
                 Blast( objectEnum);
             }
             else if(_currentIndex == MAX_BAG_CAPACITY){
-                Debug.Log($"You LOSE");
+                Debug.Log($"YOU LOSE");
+                CoreGameSignals.Instance.onLevelFailed?.Invoke();
+                InputSignals.Instance.onDisableInput?.Invoke();
             }
 
             CheckBag();
@@ -111,6 +113,7 @@ namespace Runtime.Controllers.UI
             _currentIndex = _bagArray.Count;
             _bagHashMap[objectEnum] = 0;
             UISignals.Instance.onBlast?.Invoke(_bagArray);
+            UISignals.Instance.onTargetChanged?.Invoke(objectEnum);
 
             Debug.Log($"Updating after blasting");
         }

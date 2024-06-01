@@ -5,5 +5,7 @@ namespace Runtime.Enums
         OnPlay,
         OnNextLevel,
         OnRestartLevel,
+        OnBoxRotateRight,
+        OnBoxRotateLeft,
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - ClawObject:
-      Targets: 050000000100000006000000
-      TargetCounts: 0c0f09
+      Targets: 050000000000000001000000
+      TargetCounts: 5a5a5a
       RemainingObjects: 0400000002000000
-      RemainingObjectsCounts: 0c0c
+      RemainingObjectsCounts: 7878

@@ -27,6 +27,11 @@ namespace Runtime.Signals
         public UnityAction onPlay = delegate { };
         public UnityAction<int, ObjectType> onAddToBag = delegate { };
         public UnityAction<List<ObjectType>> onBlast = delegate { };
+        public UnityAction<List<ObjectType>, List<byte>> onTargetInitialized = delegate { };
+        public UnityAction<ObjectType> onTargetChanged = delegate { };
+
+        public UnityAction onRotateRight = delegate { };
+        public UnityAction onRotateLeft = delegate { };
 
 
 
