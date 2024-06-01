@@ -68,14 +68,22 @@ namespace Runtime.Controllers.UI
         private void SubscribeEvents()
         {
             BagSignals.Instance.onItemSelected += OnAddToBag;
+            CoreGameSignals.Instance.onReset += DischargeBag;
+        }
+
+        private void DischargeBag()
+        {
+        _bagArray = new List<ObjectType>();
+         _bagHashMap= new Dictionary<ObjectType, int>();
+         _currentIndex = 0;
         }
 
 
         private void OnAddToBag(ObjectType objectEnum)
         {
-            CheckBag();
+          //  CheckBag();
             if (!_bagHashMap.ContainsKey(objectEnum))
-            {
+             {
                 _bagHashMap[objectEnum] = 0;
             }
             _bagHashMap[objectEnum]++;
@@ -83,7 +91,7 @@ namespace Runtime.Controllers.UI
 
             //Populate in bag ui
             UISignals.Instance.onAddToBag?.Invoke(_currentIndex, objectEnum);
-            Debug.Log($"Populating in bag ui");
+           // Debug.Log($"Populating in bag ui");
 
             _currentIndex++;
 
@@ -92,10 +100,12 @@ namespace Runtime.Controllers.UI
                 Blast( objectEnum);
             }
             else if(_currentIndex == MAX_BAG_CAPACITY){
-                Debug.Log($"You LOSE");
+           //     Debug.Log($"YOU LOSE");
+                CoreGameSignals.Instance.onLevelFailed?.Invoke();
+                InputSignals.Instance.onDisableInput?.Invoke();
             }
 
-            CheckBag();
+          //  CheckBag();
 
 
         }
@@ -111,14 +121,17 @@ namespace Runtime.Controllers.UI
             _currentIndex = _bagArray.Count;
             _bagHashMap[objectEnum] = 0;
             UISignals.Instance.onBlast?.Invoke(_bagArray);
+            UISignals.Instance.onTargetChanged?.Invoke(objectEnum);
 
-            Debug.Log($"Updating after blasting");
+         //   Debug.Log($"Updating after blasting");
         }
 
 
         private void UnSubscribeEvents()
         {
             BagSignals.Instance.onItemSelected -= OnAddToBag;
+            CoreGameSignals.Instance.onReset -= DischargeBag;
+
         }
 
         private void OnDisable()

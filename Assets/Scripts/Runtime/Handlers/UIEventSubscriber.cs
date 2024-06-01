@@ -19,6 +19,7 @@ namespace Runtime.Handlers
         #region Private Variables
 
          private UIManager _manager;
+         private RotationManager _rotationManager;
 
         #endregion
 
@@ -32,6 +33,8 @@ namespace Runtime.Handlers
         private void FindReferences()
         {
             _manager = FindObjectOfType<UIManager>();
+            _rotationManager = FindObjectOfType<RotationManager>();
+
         }
 
         private void OnEnable()
@@ -56,6 +59,16 @@ namespace Runtime.Handlers
                 case UIEventSubscriptionTypes.OnRestartLevel:
                 {
                     button.onClick.AddListener(_manager.RestartLevel);
+                    break;
+                }
+                case UIEventSubscriptionTypes.OnBoxRotateRight:
+                {
+                    button.onClick.AddListener(_rotationManager.RotateRight);
+                    break;
+                }
+                case UIEventSubscriptionTypes.OnBoxRotateLeft:
+                {
+                    button.onClick.AddListener(_rotationManager.RotateLeft);
                     break;
                 }
             }

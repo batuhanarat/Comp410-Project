@@ -22,8 +22,8 @@ public class CoreGameSignals : MonoBehaviour
     }
 
     #endregion
-    
-    public UnityAction<byte> onLevelInitialize = delegate { };
+
+    public UnityAction onLevelInitialize = delegate { };
     public UnityAction onClearActiveLevel = delegate { };
     public UnityAction onLevelSuccessful = delegate { };
     public UnityAction onLevelFailed = delegate { };
@@ -31,7 +31,8 @@ public class CoreGameSignals : MonoBehaviour
     public UnityAction onRestartLevel = delegate { };
     public UnityAction onPlay = delegate { };
     public UnityAction onReset = delegate { };
+    public Func<LevelData> onGetLevelData = delegate { return new LevelData(); };
     public Func<byte> onGetLevelValue = delegate { return 0; };
-
+    public UnityAction onSpawnObjects = delegate {};
   
 }

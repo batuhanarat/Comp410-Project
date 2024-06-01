@@ -11,6 +11,12 @@ TagManager:
   - IceCream
   - Milk
   - Waffle
+  - Spawner
+  - Spawner2
+  - Spawner3
+  - Spawner4
+  - Spawner5
+  - SphereSpawner
   layers:
   - Default
   - TransparentFX

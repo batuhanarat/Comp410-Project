@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Runtime.Enums;
 using Runtime.Signals;
 using UnityEngine;
@@ -32,9 +33,14 @@ namespace Runtime.Managers
             UnSubscribeEvents();
         }
 
-        private void OnLevelInitialize(byte levelValue)
+        private void OnLevelInitialize()
         {
             CoreUISignals.Instance.onOpenPanel?.Invoke(UIPanelTypes.Level, 0);
+            LevelData? _levelData = CoreGameSignals.Instance.onGetLevelData?.Invoke();
+            List<ObjectType> targetList = _levelData.Value.ClawObject.Targets;
+            List<byte> targetValues = _levelData.Value.ClawObject.TargetCounts;
+            UISignals.Instance.onTargetInitialized?.Invoke(targetList, targetValues);
+
         }
 
         private void OnLevelSuccessful()
@@ -57,13 +63,28 @@ namespace Runtime.Managers
         {
             CoreGameSignals.Instance.onRestartLevel?.Invoke();
             CoreGameSignals.Instance.onReset?.Invoke();
+            
+          
+          //InputSignals.Instance.onEnableInput?.Invoke();
+           // var currentLevel =  CoreGameSignals.Instance.onGetLevelValue?.Invoke();
         }
 
         public void Play()
         {
-            UISignals.Instance.onPlay?.Invoke();
             CoreUISignals.Instance.onClosePanel?.Invoke(1);
             InputSignals.Instance.onEnableInput?.Invoke();
+            
+            
+            
+            var currentLevel =  CoreGameSignals.Instance.onGetLevelValue?.Invoke();
+            Debug.Log("Current Level" +  currentLevel);
+         
+            CoreGameSignals.Instance.onLevelInitialize?.Invoke();
+            UISignals.Instance.onPlay?.Invoke();
+
+            CoreGameSignals.Instance.onSpawnObjects?.Invoke();
+            
+          
         }
 
        
