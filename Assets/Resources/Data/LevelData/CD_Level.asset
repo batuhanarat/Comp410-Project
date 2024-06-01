@@ -15,6 +15,6 @@ MonoBehaviour:
   Levels:
   - ClawObject:
       Targets: 050000000000000001000000
-      TargetCounts: 5a5a5a
+      TargetCounts: 0c0f09
       RemainingObjects: 0400000002000000
-      RemainingObjectsCounts: 7878
+      RemainingObjectsCounts: 140f
