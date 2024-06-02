@@ -6,6 +6,6 @@ namespace Runtime.Enums
         OnNextLevel,
         OnRestartLevel,
         OnBoxRotateRight,
-        OnBoxRotateLeft,
+        OnBoxRotateLeft
     }
 }

@@ -29,9 +29,15 @@ public class Timer : MonoBehaviour
     {
         UISignals.Instance.onPlay += StartTimer;
         CoreGameSignals.Instance.onLevelFailed += StopTimer;
+        CoreGameSignals.Instance.onLevelSuccessful += StopTimer;
+        UISignals.Instance.onTimerHelpPowerUpFired += ExtraSeconds;
     }
 
-  
+    private void ExtraSeconds()
+    {
+        _timeLeft += 10f;
+    }
+
 
     private void StopTimer()
     {
@@ -46,6 +52,7 @@ public class Timer : MonoBehaviour
         _timeLeft = _startTime;
         
     }
+    
 
     void Update()
     {
@@ -78,6 +85,7 @@ public class Timer : MonoBehaviour
     {
         UISignals.Instance.onPlay -= StartTimer;
         CoreGameSignals.Instance.onLevelFailed -= StopTimer;
+        UISignals.Instance.onTimerHelpPowerUpFired -= ExtraSeconds;
 
     }
 }

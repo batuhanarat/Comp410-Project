@@ -57,6 +57,7 @@ namespace Runtime.Controllers.UI
             }
             CoreGameSignals.Instance.onLevelSuccessful?.Invoke();
             InputSignals.Instance.onDisableInput?.Invoke();
+            
             Debug.Log("You should win");
 
         }

@@ -81,38 +81,28 @@ namespace Runtime.Controllers.UI
 
         private void OnAddToBag(ObjectType objectEnum)
         {
-          //  CheckBag();
-            if (!_bagHashMap.ContainsKey(objectEnum))
-             {
-                _bagHashMap[objectEnum] = 0;
-            }
+
+            if (!_bagHashMap.ContainsKey(objectEnum)) { 
+                 _bagHashMap[objectEnum] = 0; }
+            
             _bagHashMap[objectEnum]++;
             _bagArray.Insert(_currentIndex,objectEnum); 
 
-            //Populate in bag ui
             UISignals.Instance.onAddToBag?.Invoke(_currentIndex, objectEnum);
-           // Debug.Log($"Populating in bag ui");
-
             _currentIndex++;
-
             if (_bagHashMap[objectEnum] == BLAST_REQUIRED_COUNT)
             {
                 Blast( objectEnum);
             }
             else if(_currentIndex == MAX_BAG_CAPACITY){
-           //     Debug.Log($"YOU LOSE");
                 CoreGameSignals.Instance.onLevelFailed?.Invoke();
                 InputSignals.Instance.onDisableInput?.Invoke();
             }
-
-          //  CheckBag();
-
-
+            
         }
 
         private void Blast(ObjectType objectEnum)
         {
-
             for (int i = 0; i < BLAST_REQUIRED_COUNT; i++)
             {
                 _bagArray.Remove(objectEnum);

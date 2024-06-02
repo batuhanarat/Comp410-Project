@@ -9,12 +9,14 @@ namespace Runtime.Commands.Level
     {
    
         private GameObject _sphere;
+        private GameObject _spawner;
 
         
-        internal ObjectSpawnerCommand(GameObject sphere)
+        internal ObjectSpawnerCommand(GameObject sphere, GameObject spawner)
         {
            
             _sphere = sphere;
+            _spawner = spawner;
         }
         
         internal void Execute(ObjectType objectEnum)
@@ -25,7 +27,7 @@ namespace Runtime.Commands.Level
             Vector3 randomPointInSphere = _sphere.transform.position + randomPointInUnitSphere * radius;
 
             Object.Instantiate(Resources.Load<GameObject>($"Prefabs/ObjectPrefabs/{objectEnum}"), randomPointInSphere, Quaternion.identity,
-                _sphere.gameObject.transform.parent);
+                _spawner.gameObject.transform);
 
 
 

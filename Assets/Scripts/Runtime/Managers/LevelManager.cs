@@ -25,11 +25,7 @@ namespace Runtime.Managers
         private OnLevelLoaderCommand _levelLoaderCommand;
         private OnLevelDestroyerCommand _levelDestroyerCommand;
         private ObjectSpawnerCommand _objectSpawner;
-        private GameObject _transformOfSpawner; 
-        private GameObject _transformOfSpawner2; 
-        private GameObject _transformOfSpaawner3; 
-        private GameObject _transformOfSpawner4; 
-        private GameObject _transformOfSpawner5;
+        private GameObject _transformOfSpawner;
         private GameObject _sphere;
 
 
@@ -91,7 +87,9 @@ namespace Runtime.Managers
         {
             _levelLoaderCommand.Execute();
             _sphere = GameObject.FindWithTag("SphereSpawner");
-            _objectSpawner = new ObjectSpawnerCommand(_sphere);
+            
+            _transformOfSpawner =  GameObject.FindWithTag("Spawner");
+            _objectSpawner = new ObjectSpawnerCommand(_sphere, _transformOfSpawner);
             _levelData = GetLevelData();
         }
     
@@ -153,6 +151,7 @@ namespace Runtime.Managers
         {
             CoreGameSignals.Instance.onLevelInitialize -= InitalizeLevel;
             CoreGameSignals.Instance.onClearActiveLevel -= _levelDestroyerCommand.Execute;
+            CoreGameSignals.Instance.onSpawnObjects -= SpawnObjects;
             CoreGameSignals.Instance.onGetLevelValue -= OnGetLevelValue;
             CoreGameSignals.Instance.onNextLevel -= OnNextLevel;
             CoreGameSignals.Instance.onRestartLevel -= OnRestartLevel;

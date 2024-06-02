@@ -1,3 +1,4 @@
+using Runtime.Controllers.UI;
 using Runtime.Enums;
 using Runtime.Managers;
 using UnityEngine;
@@ -20,7 +21,8 @@ namespace Runtime.Handlers
 
          private UIManager _manager;
          private RotationManager _rotationManager;
-
+         private PlayerPowerUpController _powerUpController;
+         
         #endregion
 
         #endregion
@@ -34,6 +36,7 @@ namespace Runtime.Handlers
         {
             _manager = FindObjectOfType<UIManager>();
             _rotationManager = FindObjectOfType<RotationManager>();
+            
 
         }
 
@@ -71,6 +74,10 @@ namespace Runtime.Handlers
                     button.onClick.AddListener(_rotationManager.RotateLeft);
                     break;
                 }
+              
+                default:
+                    Debug.Log("too late ");
+                    break;
             }
         }
 
@@ -93,6 +100,19 @@ namespace Runtime.Handlers
                     button.onClick.RemoveListener(_manager.RestartLevel);
                     break;
                 }
+                case UIEventSubscriptionTypes.OnBoxRotateRight:
+                {
+                    button.onClick.AddListener(_rotationManager.RotateRight);
+                    break;
+                }
+                case UIEventSubscriptionTypes.OnBoxRotateLeft:
+                {
+                    button.onClick.AddListener(_rotationManager.RotateLeft);
+                    break;
+                }
+              
+                default:
+                    break;
             }
         }
 
